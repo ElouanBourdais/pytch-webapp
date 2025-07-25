@@ -19,11 +19,15 @@ export class BrowserMouse {
   undrainedClicks: Array<IStageCoords>;
   clientX: number;
   clientY: number;
+  stage_x: number;
+  stage_y: number;
 
   constructor(canvas: HTMLDivElement) {
     this.undrainedClicks = [];
     this.clientX = 0.0;
     this.clientY = 0.0;
+    this.stage_x = 0.0;
+    this.stage_y = 0.0;
 
     this.canvasOverlayDiv = canvas;
 
@@ -38,6 +42,9 @@ export class BrowserMouse {
     // to query mouse position (at some point in the future).
     this.clientX = evt.clientX;
     this.clientY = evt.clientY;
+    const r = this.currentStageCoords();
+    this.stage_x = r.stage_x;
+    this.stage_y = r.stage_y;
   }
 
   currentStageCoords(): IStageCoords {
